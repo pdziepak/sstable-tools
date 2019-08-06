@@ -3,6 +3,7 @@
 from setuptools import setup
 
 setup(
+    use_scm_version=True,
     name='sstable_tools',
     version='1.0.0',
     description='Scylla SStable Tools',
