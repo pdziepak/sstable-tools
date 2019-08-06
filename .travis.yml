@@ -1,0 +1,20 @@
+language: python
+python:
+- '3.6'
+
+install:
+- pip install -r requirements-dev.txt
+
+script:
+- pre-commit run -a
+
+deploy:
+  provider: pypi
+  distributions: sdist bdist_wheel
+  skip_cleanup: true
+  skip_existing: true
+  user: fruch
+  on:
+    tags: true
+  password:
+    secure: x2Yu7JLGZBRE7dO0RzBMml8gfZUufrA72r2JThHYblkADXqIY6vZ/uQhZ33L50rOxJX2cQdfhO66PXa5nJHvjbaApzI0zTAF70XpNPpcpTxOgoCgIITPc0TwqwSLbob0CPdixN9YUHX4KclXybegLWV6yHoRnP1HoSchoPkBfxraoUYJ+X8dt3Szk/zskdQRvbC+HejWTmQDx5XaVj8H+na8FiY/JsHneRMt/wi84dcyrH3r1o14dgs2oSFLRsl4igLM3SxdfB6BSyaAulxlVeTIYsNh/oy6KVu1BwV41UFmNi99YJxo1uCsXHf68di1TYbYT530VpaxJyZlqyPMJ8UZOdPFknSW9JiIYSu/dAcGCURjWEebDJH0MI5Anwk68qaPnW5iYyeK1GE/redAfYDhGRbcEOVLeiC/1jN7z4BZ4ueo0bqRo5FewfpDaTy6TcZDTFg2fY/6ViBUZuWsieeY7J02zf9LkJn04xrSwJDsvrX6TLB9LfFZTC11SrEmwpvI8c/BNbzfGKHx98FBvHsfHniEWx9d6iAJE4rlT4Y9eHQRaVHj/ZZCD5OvXKrg9afkD3TBgz1Vu/lZkrToxni+yvQpW8X3XM7vYTsa8e3aoeJtt90TS3dT30uJWoDaD5nvX2QHOkUL50ZBNnFU7vT2cGm9nbNWhl+dS/h62DA=

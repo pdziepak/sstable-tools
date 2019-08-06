@@ -10,13 +10,17 @@ import statistics
 import textwrap
 
 cmdline_parser = argparse.ArgumentParser()
-cmdline_parser.add_argument('compressioninfo_file', nargs='+', help='CompressionInfo file(s) to parse')
-cmdline_parser.add_argument('--summary', action='store_true', help='generate a summary instead of full output')
+cmdline_parser.add_argument(
+    "compressioninfo_file", nargs="+", help="CompressionInfo file(s) to parse"
+)
+cmdline_parser.add_argument(
+    "--summary", action="store_true", help="generate a summary instead of full output"
+)
 
 args = cmdline_parser.parse_args()
 
 for fname in args.compressioninfo_file:
-    s = sstablelib.Stream(open(fname, 'rb').read())
+    s = sstablelib.Stream(open(fname, "rb").read())
     algo = s.string16()
     options = s.map32()
     chunk_size = s.int32()
@@ -30,19 +34,24 @@ for fname in args.compressioninfo_file:
     nr_chunks = len(offsets)
 
     if args.summary:
-        print('{data_len:12} {chunk_size:6} {min_chunk:6} {avg_chunk:6} {max_chunk:6} {fname}'.format(**locals()))
+        print(
+            "{data_len:12} {chunk_size:6} {min_chunk:6} {avg_chunk:6} {max_chunk:6} {fname}".format(
+                **locals()
+            )
+        )
     else:
-        print(textwrap.dedent('''
+        print(
+            textwrap.dedent(
+                """
             File: {fname}
             Algorithm: {algo}
             Options: {options}
             Chunk size: {chunk_size}
             Data length: {data_len}
             Number of chunks: {nr_chunks}
-            Offsets:'''
-            ).format(**locals()))
+            Offsets:"""
+            ).format(**locals())
+        )
         for offset in offsets:
-            print('    {offset}'.format(**locals()))
+            print("    {offset}".format(**locals()))
         print()
-
-
