@@ -22,10 +22,10 @@ def read_validation(stream, fmt):
 
 def read_compaction(stream, fmt):
     ka_la_schema = (
+        ('ancestors', sstablelib.Stream.instantiate(sstablelib.Stream.array32, sstablelib.Stream.uint32)),
         ('cardinality', sstablelib.Stream.instantiate(sstablelib.Stream.array32, sstablelib.Stream.uint8)),
     )
     mc_schema = (
-        ('ancestors', sstablelib.Stream.instantiate(sstablelib.Stream.array32, sstablelib.Stream.uint32)),
         ('cardinality', sstablelib.Stream.instantiate(sstablelib.Stream.array32, sstablelib.Stream.uint8)),
     )
 
