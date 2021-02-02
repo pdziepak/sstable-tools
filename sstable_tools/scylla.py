@@ -61,6 +61,7 @@ def parse(data, sstable_format):
         (3, "extension_attributes", extension_attributes),
         (4, "run_identifier", run_identifier),
         (5, "large_data_stats", large_data_stats),
+        (6, "sstable_origin", sstablelib.Stream.string32),
     )
 
     schema = (
